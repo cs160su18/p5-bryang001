@@ -7,14 +7,50 @@
 		<title></title>
 
 		<link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="{% static '/life/vendors/bootstrap/css/bootstrap.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static '/life/vendor/bootstrap/css/bootstrap.css' %}" />
 		<link rel="stylesheet" type="text/css" href="{% static '/life/css/main.css' %}" />
 
-		<script src="{% static '/life/vendors/jquery/jquery-3.3.1.min.js' %}"></script>
-		<script src="{% static '/life/vendors/jquery-ui/jquery-ui.min.js' %}"></script>
+		<script src="{% static '/life/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+		<script src="{% static '/life/vendor/jquery-ui/jquery-ui.min.js' %}"></script>
 	</head>
 	<body>
-		<!-- Your layout here -->
-
+        <div class="row">
+            <div class="col" style="background-color: lightblue">
+                <!-- list of stores -->
+              <h1>
+                Select Store
+              </h1>
+                {% for store in stores %}
+                    <p>{{ store.name }}</p>
+                {% endfor %}
+            </div>
+            <div class="col">
+                <!-- list of items in selected store -->
+              <h1>
+                Search Items
+              </h1>
+                <ul>
+                    {% for item in items %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col" style="background-color: red">
+                <!-- shopping list -->
+              <h1>
+                Shopping Lists
+              </h1>
+                {% for list in lists %}
+                    <h3>{{list.name}}</h3>
+                    <ul>
+                        {% for item in list.contents.all %}
+                            <li>{{ item }}</li>
+                        {% endfor %}
+                    </ul>
+                    <br>
+                {% endfor %}
+            </div>
+            
+        </div>
 	</body>
 </html>
